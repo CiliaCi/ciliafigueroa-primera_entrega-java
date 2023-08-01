@@ -76,17 +76,17 @@ switch (envio){
 
     case 'norte':
         pedido = envioNorte + totalProductos;
-        alert("Detalle de su compra: " + totalProductos + "costo de productos " + envioNorte + " costo de envio = " + pedido);
+        alert("Detalle de su compra: $ " + totalProductos + "costo de productos + $ " + envioNorte + " costo de envio = $ " + pedido);
         break; 
 
     case 'sur':
         pedido = envioSur + totalProductos;
-        alert("Detalle de su compra: $ " + totalProductos + "costo de productos " + envioSur + " costo de envio = " + pedido);
+        alert("Detalle de su compra: $ " + totalProductos + "costo de productos + $ " + envioSur + " costo de envio = $ " + pedido);
         break;
 
     case 'centro':
         pedido = envioCentro + totalProductos;
-        alert("Detalle de su compra:  $ " + totalProductos + " costo de productos + $  " + envioCentro + " costo de envio = $  " + pedido);    
+        alert("Detalle de su compra:  $ " + totalProductos + " costo de productos + $ " + envioCentro + " costo de envio = $ " + pedido);    
         break; 
 
     default:
@@ -98,6 +98,7 @@ switch (envio){
 console.log ("Valor total del pedido con envio a zona " + envio + " es de: $" + pedido);
 
 
+// MENSAJE FINAL 
 
 let finalPedido = 0
 function final () {
