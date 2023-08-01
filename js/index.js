@@ -7,112 +7,104 @@
 // operador mayor y menor,  < - >
 // operador distinto !=
 
-// Pre entrega 1 - Carrito de compras de una tienda de ropa y accesorios para mascotas
 
-console.log ("Pre entrega 1 - Figueroa Cilia")
+console.log("Pre entrega 1 - Figueroa Cilia");
 
-
-let nombre = prompt ("Ingrese su nombre de usuario");
+let nombre = prompt("Ingrese su nombre de usuario");
 let edad = parseInt(prompt("Ingrese su edad"));
 let correo = prompt("Ingrese su correo electronico");
-let constraseña = prompt("Ingrese su contraseña");
-let repetir_constraseña = prompt("Repita su contraseña");
+let contraseña = prompt("Ingrese su contraseña");
+let repetir_contraseña = prompt("Repita su contraseña");
 
-
-if (edad >= 18){
-    alert("Felicidades tu registro está completo");
+if (edad >= 18) {
+  alert("Felicidades tu registro está completo");
 } else {
-    alert("Necesitar ser mayor de edad para poder hacer compras en está página");
+  alert("Necesitar ser mayor de edad para poder hacer compras en esta página");
 }
 
-//PRODUCTOS 
+// Creamos arrays para almacenar los productos y sus precios
+const productos = ["Camisa Navideña", "Conjunto BobEsponja", "Arnes"];
+const precios = [10, 50, 15];
+const carrito = []; // Array para almacenar los productos seleccionados
 
-alert ("Bienvenido a FashionFor2");
-alert ("Seleccione los productos que desea comprar");
-alert ("Camisa Navideña Perro talla S $ 10.00, Conjunto BobEsponja / Perro talla S - Persona Mujer Talla L $ 50.00, Arnes para perro talla S $ 15.00");
+alert("Bienvenido a FashionFor2");
+alert("Seleccione los productos que desea comprar");
+alert(
+  "Camisa Navideña Perro talla S $ 10.00, Conjunto BobEsponja / Perro talla S - Persona Mujer Talla L $ 50.00, Arnes para perro talla S $ 15.00"
+);
 
+// ELECCION DE PRODUCTOS
+for (let i = 0; i < productos.length; i++) {
+  let cantidad = parseInt(prompt(`Indique la cantidad de ${productos[i]} que llevará?`));
+  console.log(`${cantidad} ${productos[i]} $ ${cantidad * precios[i]}`);
 
-//COSTO DE PRODUCTOS SELECCIONADOS
-const valorCamisa = "10";
-const valorConjunto = "50";
-const valorArnes = "15";
+  // Agregamos los productos seleccionados al carrito
+  carrito.push({
+    producto: productos[i],
+    cantidad: cantidad,
+    precio: cantidad * precios[i]
+  });
+}
 
+// Mostramos los productos agregados al carrito
+for (let item of carrito) {
+  console.log(`${item.cantidad} ${item.producto}(s) $ ${item.precio}`);
+}
 
-//ELECCION DE PRODUCTOS
-const eleccionCamisa = parseInt(prompt("Indique la cantidad de camisas navideñas talla S que llevará?"));
-alert ("Se agrego al carrito " + eleccionCamisa + " camisa/as para perro talla S");
-const totalCamisa = parseInt(eleccionCamisa*valorCamisa);
-console.log ((eleccionCamisa) + " Camisas " + " $ " + (eleccionCamisa* valorCamisa));
+// CALCULO DE LA COMPRA TOTAL
+let totalProductos = 0;
+for (let item of carrito) {
+  totalProductos += item.precio;
+}
 
-const eleccionConjunto = parseInt(prompt("Indique la cantidad de conjuntos de Bob Esponja para usted y su mascota que llevará?"));
-alert ("Se agrego al carrito " + eleccionConjunto + " conjuntos de Bob Esponja para usted (mujer talla L) y su mascota");
-const totalCaonjunto = parseInt(eleccionConjunto*valorConjunto);
-console.log ((eleccionConjunto) + " Conjunto BobEsponja / Perro talla S - Mujer Talla L " + " $ " + (eleccionConjunto* valorConjunto));
-
-const eleccionArnes = parseInt(prompt("Indique la cantidad de arnes talla S que llevará?"));
-alert ("Se agrego al carrito " + eleccionArnes + " arnes talla S");
-const totalArnes = parseInt(eleccionArnes*valorArnes);
-console.log ((eleccionArnes) + " Arnes para perro talla S " + " $ " + (eleccionArnes* valorArnes));
-
-
-const totalProductos = parseInt('totalCamisa' + 'totalConjunto' + 'totalArnes');
-
-
-//COSTO DE ENVIO 
-
+// COSTO DE ENVIO
 alert("Costo de envío al norte: $ 20.00, al sur: $ 15.00, al centro: $ 10.00");
-const envioNorte =  "20";
-const envioSur = "15";
-const envioCentro = "10";
-const envio = prompt("Ingrese la zona de envío donde desea recibir sus productos(norte, sur, centro)");
-alert("Se agrego al carrito el costo de envío de la zona" + envio);
-console.log ( "Zona elegida " + envio);
+const envioNorte = 20;
+const envioSur = 15;
+const envioCentro = 10;
 
-//CALCULO DE LA COMPRA TOTAL
+const envio = prompt(
+  "Ingrese la zona de envío donde desea recibir sus productos (norte, sur, centro)"
+);
 
+//CALCULO DE LA COMPRA TOTAL CON ENVIO
 let pedido = 0;
 
-switch (envio){
+switch (envio) {
+  case "norte":
+    pedido = envioNorte + totalProductos;
+    break;
 
-    case 'norte':
-        pedido = envioNorte + totalProductos;
-        alert("Detalle de su compra: $ " + totalProductos + "costo de productos + $ " + envioNorte + " costo de envio = $ " + pedido);
-        break; 
+  case "sur":
+    pedido = envioSur + totalProductos;
+    break;
 
-    case 'sur':
-        pedido = envioSur + totalProductos;
-        alert("Detalle de su compra: $ " + totalProductos + "costo de productos + $ " + envioSur + " costo de envio = $ " + pedido);
-        break;
+  case "centro":
+    pedido = envioCentro + totalProductos;
+    break;
 
-    case 'centro':
-        pedido = envioCentro + totalProductos;
-        alert("Detalle de su compra:  $ " + totalProductos + " costo de productos + $ " + envioCentro + " costo de envio = $ " + pedido);    
-        break; 
-
-    default:
-        alert("Opcion invalida");
-        break;
+  default:
+    alert("Opcion invalida");
+    break;
 }
 
+console.log("Valor total del pedido con envio a zona " + envio + " es de: $" + pedido);
 
-console.log ("Valor total del pedido con envio a zona " + envio + " es de: $" + pedido);
-
-
-// MENSAJE FINAL 
-
-let finalPedido = 0
-function final () {
-    if (pedido === '80') {
-        alert ("Felicidades por el valor de la compra de $ 80.00 recibes gratis un collar para tu mascota");
-        console.log ("El valor final del pedido es de: " + valorFinal);
-    }
-    if (pedido < '80') {
-        alert ("Recuerda que por cada $ 80.00 de compra recibes un regalo de FashionFor2");
-    }   
+// MENSAJE FINAL
+function final() {
+  if (pedido === 80) {
+    alert("Felicidades por el valor de la compra de $ 80.00 recibes gratis un collar para tu mascota");
+    console.log("El valor final del pedido es de: " + pedido);
+  } else if (pedido < 80) {
+    alert("Recuerda que por cada $ 80.00 de compra recibes un regalo de FashionFor2");
+  }
 }
 
-console.log("Gracias por tu compra. No olvides seguirnos en las redes sociales para enterarte de nuestras proximas promociones.")
+final();
 
+console.log(
+  "Gracias por tu compra. No olvides seguirnos en las redes sociales para enterarte de nuestras próximas promociones."
+);
 
 
 
